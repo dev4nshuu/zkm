@@ -1,0 +1,25 @@
+{
+  "name": "zkm-monorepo",
+  "version": "1.0.0",
+  "description": "ZKM — Zero-Knowledge Messenger with AI Chat Summarization",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "server": "node server/server.js",
+    "server:dev": "node --watch server/server.js",
+    "client": "npm --prefix client run dev",
+    "client:build": "npm --prefix client run build",
+    "start": "node server/server.js",
+    "dev": "concurrently \"npm run server:dev\" \"npm run client\"",
+    "dev:all": "concurrently \"npm run server:dev\" \"npm run client\" \"npm run local-ai\"",
+    "local-ai": "node server/local-ai-runner.js",
+    "test:verify": "node scripts/verify-zkm.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
